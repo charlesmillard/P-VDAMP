@@ -5,7 +5,7 @@ addpath(genpath('.'))
 rng(777)
 
 %% load demo data
-load('demo_brain_data.mat') % load 2D data in format (nx, ny, ncoils). Please feel free to try your own!
+load('demo_brain_data.mat')
 [nx, ny, nc] = size(dcoil_full);
 
 smaps = rx_espirit(dcoil_full, [nx, ny], [5,5], 0.02, 0);

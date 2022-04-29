@@ -11,9 +11,11 @@ addpath(genpath('your_own_path/auto-lambda-for-cs-recons'));
 do_afista = exist('auto_l1_recon', 'dir'); 
 %% load data
 disp('loading data...')
-load('demo_brain_data.mat')
+load('demo_brain_data.mat') % load 2D data in format (nx, ny, ncoils). Please feel free to try your own!
 
-[nx, ny, nc] = size(smaps);
+[nx, ny, nc] = size(dcoil_full);
+smaps = rx_espirit(dcoil_full, [nx, ny], [5,5], 0.02, 0);
+x0 = sum(conj(smaps).*ifftnc(dcoil_full), 3);
 %% generate sampling mask
 sample_type = 'bern'; % 'bern' for bernoulli or 'pd' for poisson disc
 R = 5; % acceleration factor. For this demo choose from R=5, 10
